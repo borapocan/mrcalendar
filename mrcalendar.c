@@ -572,6 +572,11 @@ static void activate(GtkApplication *app, gpointer ud) {
 	ca->window = gtk_application_window_new(app);
 	gtk_window_set_title(GTK_WINDOW(ca->window), "Mr.Calendar");
 	gtk_window_set_default_size(GTK_WINDOW(ca->window), 980, 660);
+	/* header bar with title and window controls */
+	GtkWidget *title_bar = gtk_header_bar_new();
+	gtk_header_bar_set_show_title_buttons(GTK_HEADER_BAR(title_bar), TRUE);
+	gtk_header_bar_set_title_widget(GTK_HEADER_BAR(title_bar), gtk_label_new("Mr.Calendar"));
+	gtk_window_set_titlebar(GTK_WINDOW(ca->window), title_bar);
 
 	/* set icon after window is realized */
 	g_signal_connect(ca->window, "realize",
@@ -582,6 +587,13 @@ static void activate(GtkApplication *app, gpointer ud) {
 	gtk_css_provider_load_from_string(css,
 		"window, dialog { background: #f5f5f5; }"
 		"* { font-family: 'JetBrains Mono','Fira Mono',monospace; color: #1a1a1a; }"
+		"headerbar { background: #ebebeb; border-bottom: 1px solid #d0d0d0; border-radius: 0; box-shadow: none; min-height: 36px; padding: 0 8px; }"
+		"headerbar * { color: #1a1a1a; }"
+		"headerbar label { font-size: 14px; font-weight: bold; color: #1a1a1a; }"
+		"headerbar windowcontrols { background: transparent; }"
+		"headerbar windowcontrols button { background: transparent; border: none; border-radius: 0; box-shadow: none; outline: none; padding: 4px 6px; margin: 0; color: #1a1a1a; -gtk-icon-size: 14px; }"
+		"headerbar windowcontrols button:hover { background: transparent; border: none; box-shadow: none; }"
+		"headerbar windowcontrols button:active { background: transparent; }"
 		"entry { background: #fff; color: #1a1a1a; border: 1px solid #ccc; border-radius: 6px; }"
 		"entry text { color: #1a1a1a; }"
 		"entry placeholder { color: #aaa; }"
