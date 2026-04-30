@@ -1,6 +1,9 @@
 [Desktop Entry]
 Name=Mr.Calendar
+GenericName=Calendar
+Comment=Calendar for MrRobotOS
 Exec=mrcalendar
 Icon=mrcalendar
 Type=Application
 Categories=Utility;
+Keywords=calendar;date;time;month;year;day;event;mrrobotos;
